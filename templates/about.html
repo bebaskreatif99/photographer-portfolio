@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang Kami - Photographer.Baik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Poppins', sans-serif; } </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-700">Photographer.Baik</a>
+            <div class="hidden md:flex space-x-8 text-lg">
+                <a href="/" class="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="/about" class="text-blue-600 font-bold">About</a>
+                <a href="/portfolio" class="text-gray-600 hover:text-blue-600">Portfolio</a>
+                <a href="/pricelist" class="text-gray-600 hover:text-blue-600">Price List</a>
+            </div>
+            <a href="https://wa.me/6285741676692" class="hidden md:inline-block bg-gradient-to-r from-sky-500 to-blue-600 text-white font-semibold px-6 py-2 rounded-lg hover:opacity-90 transition-opacity">Hubungi Kami</a>
+        </div>
+    </nav>
+    
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold text-gray-900">Tentang Photographer.Baik</h1>
+                <p class="mt-3 text-lg text-gray-600 max-w-3xl mx-auto">Lebih dari sekadar foto, kami menangkap esensi dari setiap momen.</p>
+            </div>
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <img src="{{ url_for('static', filename='images/profil-saya.png') }}" alt="Fotografer Profesional" class="rounded-lg shadow-2xl w-full">
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Filosofi Kami</h2>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        Di Photographer.Baik, kami percaya bahwa setiap foto adalah sebuah cerita. Misi kami adalah menangkap emosi yang tulus, detail yang terlewatkan, dan keindahan yang otentik. Kami bekerja dengan pendekatan personal, berusaha memahami visi Anda untuk mengubahnya menjadi karya visual yang tak lekang oleh waktu.
+                    </p>
+                    <p class="text-gray-600 leading-relaxed">
+                        Dengan pengalaman bertahun-tahun di industri ini, tim kami terdiri dari para profesional yang berdedikasi dan kreatif, siap memberikan hasil terbaik untuk hari spesial Anda.
+                    </p>
+                    <a href="/portfolio" class="mt-6 inline-block bg-gradient-to-r from-sky-500 to-blue-600 text-white font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity">Lihat Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Photographer.Baik. All Rights Reserved.</p>
+            <p class="mt-2">
+                Kontak: <a href="https://wa.me/6285741676692" class="text-sky-400 hover:underline font-semibold">+62 857-4167-6692</a> | 
+                Instagram: <a href="https://www.instagram.com/photographer.baik" target="_blank" class="text-sky-400 hover:underline font-semibold">@photographer.baik</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
