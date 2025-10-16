@@ -8,95 +8,82 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; }
-
-        /* CSS untuk Masonry Layout */
-        .masonry-grid {
-            column-count: 1; /* Default untuk mobile */
-            column-gap: 1.5rem; /* Jarak antar kolom */
-        }
-        .masonry-item {
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 1.5rem; /* Jarak vertikal antar gambar */
-            break-inside: avoid; /* Mencegah gambar terpotong antar kolom */
-        }
-        
-        /* Responsive Breakpoints untuk Masonry */
-        @media (min-width: 640px) { /* sm */
-            .masonry-grid {
-                column-count: 2;
-            }
-        }
-        @media (min-width: 1024px) { /* lg */
-            .masonry-grid {
-                column-count: 3;
-            }
-        }
+        :root { --cream: #FFFBF5; --gold: #B68D40; --dark-text: #1E1E1E; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--cream); color: var(--dark-text); }
+        h1, h2, h3, .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .bg-gold { background-color: var(--gold); }
+        .text-gold { color: var(--gold); }
+        .border-gold { border-color: var(--gold); }
+        .masonry-grid { column-count: 1; column-gap: 1.5rem; }
+        .masonry-item { display: inline-block; width: 100%; margin-bottom: 1.5rem; break-inside: avoid; }
+        @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
     </style>
 </head>
-<body class="bg-white text-gray-800">
+<body x-data="{ mobileMenuOpen: false }">
 
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-700">Photographer.Baik</a>
-            <div class="hidden md:flex space-x-8 text-lg">
-                <a href="/" class="text-gray-600 hover:text-blue-600">Home</a>
-                <a href="/about" class="text-gray-600 hover:text-blue-600">About</a>
-                <a href="/portfolio" class="text-blue-600 font-bold">Portfolio</a>
-                <a href="/pricelist" class="text-gray-600 hover:text-blue-600">Price List</a>
+            <a href="/" class="text-3xl font-bold text-gold font-serif">Photographer.Baik</a>
+            <div class="hidden md:flex items-center space-x-8 text-lg">
+                <a href="/" class="text-gray-600 hover:text-gold">Home</a>
+                <a href="/about" class="text-gray-600 hover:text-gold">About</a>
+                <a href="/portfolio" class="text-gold font-bold">Portfolio</a>
+                <a href="/pricelist" class="text-gray-600 hover:text-gold">Price List</a>
+                <a href="https://wa.me/6285741676692" class="bg-gold text-white font-semibold px-6 py-2 rounded-md hover:opacity-90 transition-opacity">Hubungi Kami</a>
             </div>
-            <a href="https://wa.me/6285741676692" class="hidden md:inline-block bg-gradient-to-r from-sky-500 to-blue-600 text-white font-semibold px-6 py-2 rounded-lg hover:opacity-90 transition-opacity">Hubungi Kami</a>
+            <div class="md:hidden">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-dark-text focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" class="md:hidden bg-white py-4">
+            <a href="/" class="block px-6 py-2 text-lg text-gray-600 hover:text-gold">Home</a>
+            <a href="/about" class="block px-6 py-2 text-lg text-gray-600 hover:text-gold">About</a>
+            <a href="/portfolio" class="block px-6 py-2 text-lg text-gold font-bold">Portfolio</a>
+            <a href="/pricelist" class="block px-6 py-2 text-lg text-gray-600 hover:text-gold">Price List</a>
+            <div class="px-6 mt-4">
+                <a href="https://wa.me/6285741676692" class="block text-center bg-gold text-white font-semibold px-6 py-3 rounded-md hover:opacity-90 transition-opacity">Hubungi Kami</a>
+            </div>
         </div>
     </nav>
 
-    <section class="py-20" x-data="{ activeTab: 'wedding' }">
+    <section class="py-24" x-data="{ activeTab: 'wedding' }">
         <div class="container mx-auto px-6">
             <div class="text-center">
-                <h1 class="text-4xl font-bold text-gray-900">Portfolio Karya Kami</h1>
+                <h1 class="text-4xl md:text-6xl font-bold text-dark-text">Portfolio Karya Kami</h1>
                 <p class="mt-3 text-lg text-gray-600">Setiap gambar menceritakan sebuah kisah yang unik.</p>
             </div>
 
-            <div class="flex justify-center space-x-2 md:space-x-4 mt-12 border-b border-gray-200">
-                <button @click="activeTab = 'wedding'" :class="activeTab === 'wedding' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'" class="px-4 py-2 text-lg font-semibold border-b-2 transition-colors">Wedding</button>
-                <button @click="activeTab = 'prewedding'" :class="activeTab === 'prewedding' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'" class="px-4 py-2 text-lg font-semibold border-b-2 transition-colors">Prewedding</button>
-                <button @click="activeTab = 'event'" :class="activeTab === 'event' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'" class="px-4 py-2 text-lg font-semibold border-b-2 transition-colors">Event</button>
+            <div class="flex justify-center space-x-2 md:space-x-4 mt-16 border-b">
+                <button @click="activeTab = 'wedding'" :class="activeTab === 'wedding' ? 'border-gold text-gold' : 'border-transparent text-gray-500 hover:text-dark-text'" class="px-4 py-3 text-lg font-semibold border-b-2 transition-colors">Wedding</button>
+                <button @click="activeTab = 'prewedding'" :class="activeTab === 'prewedding' ? 'border-gold text-gold' : 'border-transparent text-gray-500 hover:text-dark-text'" class="px-4 py-3 text-lg font-semibold border-b-2 transition-colors">Prewedding</button>
+                <button @click="activeTab = 'event'" :class="activeTab === 'event' ? 'border-gold text-gold' : 'border-transparent text-gray-500 hover:text-dark-text'" class="px-4 py-3 text-lg font-semibold border-b-2 transition-colors">Event</button>
             </div>
 
             <div class="mt-12">
                 <div x-show="activeTab === 'wedding'" class="masonry-grid">
-                    {% for img in images.wedding %}
-                    <div class="masonry-item">
-                        <img src="{{ url_for('static', filename=img.src) }}" alt="{{ img.alt }}" class="rounded-lg shadow-lg w-full h-auto object-cover">
-                    </div>
-                    {% endfor %}
+                    {% for img in images.wedding %}<div class="masonry-item"><img src="{{ url_for('static', filename=img.src) }}" alt="{{ img.alt }}" class="rounded-lg shadow-lg w-full h-auto"></div>{% endfor %}
                 </div>
                 <div x-show="activeTab === 'prewedding'" class="masonry-grid">
-                     {% for img in images.prewedding %}
-                    <div class="masonry-item">
-                        <img src="{{ url_for('static', filename=img.src) }}" alt="{{ img.alt }}" class="rounded-lg shadow-lg w-full h-auto object-cover">
-                    </div>
-                    {% endfor %}
+                    {% for img in images.prewedding %}<div class="masonry-item"><img src="{{ url_for('static', filename=img.src) }}" alt="{{ img.alt }}" class="rounded-lg shadow-lg w-full h-auto"></div>{% endfor %}
                 </div>
                 <div x-show="activeTab === 'event'" class="masonry-grid">
-                    {% for img in images.event %}
-                    <div class="masonry-item">
-                        <img src="{{ url_for('static', filename=img.src) }}" alt="{{ img.alt }}" class="rounded-lg shadow-lg w-full h-auto object-cover">
-                    </div>
-                    {% endfor %}
+                    {% for img in images.event %}<div class="masonry-item"><img src="{{ url_for('static', filename=img.src) }}" alt="{{ img.alt }}" class="rounded-lg shadow-lg w-full h-auto"></div>{% endfor %}
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-white">
+    <footer class="bg-white border-t">
         <div class="container mx-auto px-6 py-8 text-center">
-            <p>&copy; 2025 Photographer.Baik. All Rights Reserved.</p>
+            <p class="text-gray-600">&copy; 2025 Photographer.Baik. All Rights Reserved.</p>
             <p class="mt-2">
-                Kontak: <a href="https://wa.me/6285741676692" class="text-sky-400 hover:underline font-semibold">+62 857-4167-6692</a> | 
-                Instagram: <a href="https://www.instagram.com/photographer.baik" target="_blank" class="text-sky-400 hover:underline font-semibold">@photographer.baik</a>
+                <a href="https://wa.me/6285741676692" class="text-gold hover:underline font-semibold">+62 857-4167-6692</a> | 
+                <a href="https://www.instagram.com/photographer.baik" target="_blank" class="text-gold hover:underline font-semibold">@photographer.baik</a>
             </p>
         </div>
     </footer>

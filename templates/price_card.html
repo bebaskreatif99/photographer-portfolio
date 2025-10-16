@@ -1,0 +1,20 @@
+<div class="relative flex flex-col bg-white rounded-lg shadow-lg p-8 {% if pkg.highlight %} border-2 border-gold {% endif %}">
+    {% if pkg.highlight %}
+    <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
+        <span class="inline-flex px-4 py-1 text-sm font-semibold tracking-wider text-white uppercase bg-gold rounded-full">Populer</span>
+    </div>
+    {% endif %}
+    <h3 class="text-3xl font-bold text-center font-serif text-dark-text">{{ pkg.name }}</h3>
+    <p class="mt-4 text-4xl font-bold text-center font-serif"><span class="text-gold">{{ pkg.price }}</span></p>
+    <ul class="flex-1 mt-8 space-y-4 text-gray-600">
+        {% for feature in pkg.features %}
+        <li class="flex items-start">
+            <svg class="w-6 h-5 text-gold mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            <span>{{ feature }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="https://wa.me/6285741676692?text=Halo, saya tertarik dengan paket {{ pkg.name }} {{ activeTab }}." target="_blank" class="w-full text-center mt-10 px-6 py-3 font-bold rounded-md text-lg transition-all duration-300 {% if pkg.highlight %} bg-gold text-white hover:opacity-90 shadow-lg {% else %} bg-gray-100 text-dark-text hover:bg-gray-200 {% endif %}">
+        Pilih Paket
+    </a>
+</div>

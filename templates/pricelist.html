@@ -8,151 +8,76 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        h1, h2, h3, .font-poppins {
-            font-family: 'Poppins', sans-serif;
-        }
-        .gradient-border-wrap {
-            padding: 3px;
-            background: linear-gradient(to bottom right, #38bdf8, #2563eb);
-            border-radius: 1.25rem;
-        }
+        :root { --cream: #FFFBF5; --gold: #B68D40; --dark-text: #1E1E1E; }
+        body { font-family: 'Lato', sans-serif; background-color: var(--cream); color: var(--dark-text); }
+        h1, h2, h3, .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .bg-gold { background-color: var(--gold); }
+        .text-gold { color: var(--gold); }
+        .border-gold { border-color: var(--gold); }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body x-data="{ mobileMenuOpen: false }">
 
     <nav class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-700">Photographer.Baik</a>
-            <div class="hidden md:flex space-x-8 text-lg">
-                <a href="/" class="text-gray-600 hover:text-blue-600">Home</a>
-                <a href="/about" class="text-gray-600 hover:text-blue-600">About</a>
-                <a href="/portfolio" class="text-gray-600 hover:text-blue-600">Portfolio</a>
-                <a href="/pricelist" class="text-blue-600 font-bold">Price List</a>
+            <a href="/" class="text-3xl font-bold text-gold font-serif">Photographer.Baik</a>
+            <div class="hidden md:flex items-center space-x-8 text-lg">
+                <a href="/" class="text-gray-600 hover:text-gold">Home</a>
+                <a href="/about" class="text-gray-600 hover:text-gold">About</a>
+                <a href="/portfolio" class="text-gray-600 hover:text-gold">Portfolio</a>
+                <a href="/pricelist" class="text-gold font-bold">Price List</a>
+                <a href="https://wa.me/6285741676692" class="bg-gold text-white font-semibold px-6 py-2 rounded-md hover:opacity-90 transition-opacity">Hubungi Kami</a>
             </div>
-            <a href="https://wa.me/6285741676692" class="hidden md:inline-block bg-gradient-to-r from-sky-500 to-blue-600 text-white font-semibold px-6 py-2 rounded-lg hover:opacity-90 transition-opacity">Hubungi Kami</a>
+            <div class="md:hidden">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-dark-text focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div x-show="mobileMenuOpen" @click.away="mobileMenuOpen = false" class="md:hidden bg-white py-4">
+            <a href="/" class="block px-6 py-2 text-lg text-gray-600 hover:text-gold">Home</a>
+            <a href="/about" class="block px-6 py-2 text-lg text-gray-600 hover:text-gold">About</a>
+            <a href="/portfolio" class="block px-6 py-2 text-lg text-gray-600 hover:text-gold">Portfolio</a>
+            <a href="/pricelist" class="block px-6 py-2 text-lg text-gold font-bold">Price List</a>
+            <div class="px-6 mt-4">
+                <a href="https://wa.me/6285741676692" class="block text-center bg-gold text-white font-semibold px-6 py-3 rounded-md hover:opacity-90 transition-opacity">Hubungi Kami</a>
+            </div>
         </div>
     </nav>
 
     <main class="container mx-auto px-6 py-24" x-data="{ activeTab: 'event' }">
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold text-gray-900">Pilihan Paket Fleksibel</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-dark-text">Paket Harga Fleksibel</h2>
             <p class="mt-3 text-lg text-gray-600">Dirancang untuk memenuhi setiap kebutuhan acara Anda.</p>
         </div>
         
-        <div class="flex justify-center border-b border-gray-200 mb-12">
-            <button @click="activeTab = 'event'" :class="activeTab === 'event' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'" class="py-4 px-6 block font-semibold text-lg focus:outline-none border-b-2 transition-all duration-300">
-                🎉 Event
-            </button>
-            <button @click="activeTab = 'prewedding'" :class="activeTab === 'prewedding' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'" class="py-4 px-6 block font-semibold text-lg focus:outline-none border-b-2 transition-all duration-300">
-                💕 Prewedding
-            </button>
-            <button @click="activeTab = 'wedding'" :class="activeTab === 'wedding' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'" class="py-4 px-6 block font-semibold text-lg focus:outline-none border-b-2 transition-all duration-300">
-                💍 Wedding
-            </button>
+        <div class="flex justify-center border-b mb-12">
+            <button @click="activeTab = 'event'" :class="activeTab === 'event' ? 'border-gold text-gold' : 'border-transparent text-gray-500 hover:text-dark-text'" class="py-3 px-6 block font-semibold text-lg focus:outline-none border-b-2 transition-all">Event</button>
+            <button @click="activeTab = 'prewedding'" :class="activeTab === 'prewedding' ? 'border-gold text-gold' : 'border-transparent text-gray-500 hover:text-dark-text'" class="py-3 px-6 block font-semibold text-lg focus:outline-none border-b-2 transition-all">Prewedding</button>
+            <button @click="activeTab = 'wedding'" :class="activeTab === 'wedding' ? 'border-gold text-gold' : 'border-transparent text-gray-500 hover:text-dark-text'" class="py-3 px-6 block font-semibold text-lg focus:outline-none border-b-2 transition-all">Wedding</button>
         </div>
 
         <div>
             <div x-show="activeTab === 'event'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for pkg in event_data %}
-                <div class="relative {% if pkg.highlight %} gradient-border-wrap shadow-2xl {% else %} bg-white border border-gray-200 shadow-lg rounded-xl {% endif %}">
-                    <div class="flex flex-col p-8 bg-white rounded-xl h-full">
-                        {% if pkg.highlight %}
-                        <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                            <span class="inline-flex px-4 py-1 text-sm font-semibold tracking-wider text-white uppercase bg-gradient-to-r from-sky-500 to-blue-600 rounded-full">Populer</span>
-                        </div>
-                        {% endif %}
-                        <h3 class="text-2xl font-bold text-center font-poppins text-gray-900">{{ pkg.name }}</h3>
-                        <p class="mt-4 text-4xl font-bold text-center font-poppins"><span class="text-blue-600">{{ pkg.price }}</span></p>
-                        <ul class="flex-1 mt-8 space-y-4 text-gray-600">
-                            {% for feature in pkg.features %}
-                            <li class="flex items-start">
-                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                <span>{{ feature }}</span>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <a href="https://wa.me/6285741676692?text=Halo, saya tertarik dengan paket {{ pkg.name }} {{ activeTab }}." target="_blank" class="w-full text-center mt-10 px-6 py-3 font-semibold rounded-lg text-lg transition-all duration-300 {% if pkg.highlight %} bg-gradient-to-r from-sky-500 to-blue-600 text-white hover:opacity-90 shadow-lg {% else %} bg-blue-100 text-blue-800 hover:bg-blue-200 hover:text-blue-900 {% endif %}">
-                            Pilih Paket
-                        </a>
-                    </div>
-                </div>
-                {% endfor %}
+                {% for pkg in event_data %}{% include 'price_card.html' %}{% endfor %}
             </div>
-
             <div x-show="activeTab === 'prewedding'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for pkg in prewedding_data %}
-                <div class="relative {% if pkg.highlight %} gradient-border-wrap shadow-2xl {% else %} bg-white border border-gray-200 shadow-lg rounded-xl {% endif %}">
-                    <div class="flex flex-col p-8 bg-white rounded-xl h-full">
-                        {% if pkg.highlight %}
-                        <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                            <span class="inline-flex px-4 py-1 text-sm font-semibold tracking-wider text-white uppercase bg-gradient-to-r from-sky-500 to-blue-600 rounded-full">Populer</span>
-                        </div>
-                        {% endif %}
-                        <h3 class="text-2xl font-bold text-center font-poppins text-gray-900">{{ pkg.name }}</h3>
-                        <p class="mt-4 text-4xl font-bold text-center font-poppins"><span class="text-blue-600">{{ pkg.price }}</span></p>
-                        <ul class="flex-1 mt-8 space-y-4 text-gray-600">
-                            {% for feature in pkg.features %}
-                            <li class="flex items-start">
-                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                <span>{{ feature }}</span>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <a href="https://wa.me/6285741676692?text=Halo, saya tertarik dengan paket {{ pkg.name }} {{ activeTab }}." target="_blank" class="w-full text-center mt-10 px-6 py-3 font-semibold rounded-lg text-lg transition-all duration-300 {% if pkg.highlight %} bg-gradient-to-r from-sky-500 to-blue-600 text-white hover:opacity-90 shadow-lg {% else %} bg-blue-100 text-blue-800 hover:bg-blue-200 hover:text-blue-900 {% endif %}">
-                            Pilih Paket
-                        </a>
-                    </div>
-                </div>
-                {% endfor %}
+                {% for pkg in prewedding_data %}{% include 'price_card.html' %}{% endfor %}
             </div>
-            
             <div x-show="activeTab === 'wedding'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {% for pkg in wedding_data %}
-                <div class="relative {% if pkg.highlight %} gradient-border-wrap shadow-2xl {% else %} bg-white border border-gray-200 shadow-lg rounded-xl {% endif %}">
-                    <div class="flex flex-col p-8 bg-white rounded-xl h-full">
-                        {% if pkg.highlight %}
-                        <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2">
-                            <span class="inline-flex px-4 py-1 text-sm font-semibold tracking-wider text-white uppercase bg-gradient-to-r from-sky-500 to-blue-600 rounded-full">Populer</span>
-                        </div>
-                        {% endif %}
-                        <h3 class="text-2xl font-bold text-center font-poppins text-gray-900">{{ pkg.name }}</h3>
-                        <p class="mt-4 text-4xl font-bold text-center font-poppins"><span class="text-blue-600">{{ pkg.price }}</span></p>
-                        <ul class="flex-1 mt-8 space-y-4 text-gray-600">
-                            {% for feature in pkg.features %}
-                            <li class="flex items-start">
-                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                                <span>{{ feature }}</span>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <a href="https://wa.me/6285741676692?text=Halo, saya tertarik dengan paket {{ pkg.name }} {{ activeTab }}." target="_blank" class="w-full text-center mt-10 px-6 py-3 font-semibold rounded-lg text-lg transition-all duration-300 {% if pkg.highlight %} bg-gradient-to-r from-sky-500 to-blue-600 text-white hover:opacity-90 shadow-lg {% else %} bg-blue-100 text-blue-800 hover:bg-blue-200 hover:text-blue-900 {% endif %}">
-                            Pilih Paket
-                        </a>
-                    </div>
-                </div>
-                {% endfor %}
+                {% for pkg in wedding_data %}{% include 'price_card.html' %}{% endfor %}
             </div>
         </div>
-
-        <div class="text-center mt-20 text-gray-500">
-            <p>*Semua paket dapat diubah atau disesuaikan dengan keperluan client.</p>
-        </div>
-
     </main>
 
-    <footer class="bg-gray-800 text-white">
+    <footer class="bg-white border-t">
         <div class="container mx-auto px-6 py-8 text-center">
-            <p>&copy; 2025 Photographer.Baik. All Rights Reserved.</p>
+            <p class="text-gray-600">&copy; 2025 Photographer.Baik. All Rights Reserved.</p>
             <p class="mt-2">
-                Kontak: <a href="https://wa.me/6285741676692" class="text-sky-400 hover:underline font-semibold">+62 857-4167-6692</a> | 
-                Instagram: <a href="https://www.instagram.com/photographer.baik" target="_blank" class="text-sky-400 hover:underline font-semibold">@photographer.baik</a>
+                <a href="https://wa.me/6285741676692" class="text-gold hover:underline font-semibold">+62 857-4167-6692</a> | 
+                <a href="https://www.instagram.com/photographer.baik" target="_blank" class="text-gold hover:underline font-semibold">@photographer.baik</a>
             </p>
         </div>
     </footer>
